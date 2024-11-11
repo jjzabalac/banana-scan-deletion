@@ -5,33 +5,140 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Banana Scan - Data Deletion</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: Arial, sans-serif;
+            background-color: #F8F5D0;
+            min-height: 100vh;
+            padding: 20px;
+            padding-bottom: 80px; /* Espacio extra para los botones de navegación */
+        }
+
+        .container {
             max-width: 800px;
             margin: 0 auto;
-            padding: 20px;
-            background-color: #F8F5D0;
-        }
-        .container {
             background-color: white;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
+
         h1 {
             color: #4CAF50;
             text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
         }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 20px;
+            }
+        }
+
         .warning {
             color: #f44336;
             font-weight: bold;
             margin: 20px 0;
-            padding: 10px;
+            padding: 15px;
             border: 2px solid #f44336;
             border-radius: 4px;
+            text-align: center;
         }
+
         .content {
             line-height: 1.6;
+        }
+
+        h2 {
+            color: #333;
+            margin: 20px 0 10px 0;
+            font-size: 20px;
+        }
+
+        ul, ol {
+            padding-left: 25px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .footer-note {
+            margin-top: 30px;
+            padding: 15px;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        /* Estilo para botones de la app */
+        .app-buttons {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 16px;
+            background-color: white;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .delete-button {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .cancel-button {
+            background-color: transparent;
+            color: #666;
+            border: 1px solid #666;
+            padding: 16px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        /* Ajuste para pantallas pequeñas */
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+                padding-bottom: 140px; /* Más espacio para los botones en móviles */
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            .warning {
+                padding: 10px;
+                font-size: 14px;
+            }
+
+            h2 {
+                font-size: 18px;
+            }
+
+            li {
+                font-size: 14px;
+            }
         }
     </style>
 </head>
@@ -60,8 +167,15 @@
                 <li>You will receive an email confirmation once the process starts</li>
             </ol>
 
-            <p>If you're viewing this page outside the Banana Scan app, you can initiate deletion by opening the app and going to Settings > Account Settings > Delete Account.</p>
+            <div class="footer-note">
+                If you're viewing this page outside the Banana Scan app, you can initiate deletion by opening the app and going to Settings > Account Settings > Delete Account.
+            </div>
         </div>
+    </div>
+
+    <div class="app-buttons">
+        <button class="delete-button">Yes, Delete My Account</button>
+        <button class="cancel-button">Cancel</button>
     </div>
 </body>
 </html>
