@@ -16,7 +16,6 @@
             background-color: #F8F5D0;
             min-height: 100vh;
             padding: 20px;
-            padding-bottom: 80px; /* Espacio extra para los botones de navegación */
         }
 
         .container {
@@ -79,8 +78,8 @@
             text-align: center;
         }
 
-        /* Estilo para botones de la app */
-        .app-buttons {
+        .web-only-buttons {
+            display: none; /* Ocultos por defecto */
             position: fixed;
             bottom: 0;
             left: 0;
@@ -88,9 +87,19 @@
             padding: 16px;
             background-color: white;
             box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-            display: flex;
             flex-direction: column;
             gap: 8px;
+        }
+
+        /* Solo mostrar botones si NO estamos en la app */
+        @media (min-width: 1024px) {
+            .web-only-buttons {
+                display: flex;
+            }
+            
+            body {
+                padding-bottom: 140px;
+            }
         }
 
         .delete-button {
@@ -116,11 +125,9 @@
             width: 100%;
         }
 
-        /* Ajuste para pantallas pequeñas */
         @media (max-width: 480px) {
             body {
                 padding: 10px;
-                padding-bottom: 140px; /* Más espacio para los botones en móviles */
             }
 
             .container {
@@ -173,9 +180,23 @@
         </div>
     </div>
 
-    <div class="app-buttons">
+    <!-- Estos botones solo se mostrarán en la versión web -->
+    <div class="web-only-buttons">
         <button class="delete-button">Yes, Delete My Account</button>
         <button class="cancel-button">Cancel</button>
     </div>
+
+    <script>
+        // Detectar si estamos en la app mediante el User-Agent
+        function isInApp() {
+            return /BananaScan/.test(navigator.userAgent);
+        }
+
+        // Si estamos en la app, asegurarnos de que los botones estén ocultos
+        if (isInApp()) {
+            document.querySelector('.web-only-buttons').style.display = 'none';
+            document.body.style.paddingBottom = '20px';
+        }
+    </script>
 </body>
 </html>
