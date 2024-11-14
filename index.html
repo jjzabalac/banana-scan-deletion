@@ -215,11 +215,17 @@
         }
 
         function openApp() {
-            window.location.href = 'bananascan://datadeletion?action=delete';
-            
-            setTimeout(function() {
-                window.location.href = 'https://play.google.com/store/apps/details?id=com.bananascan.classifier';
-            }, 2000);
+            if (!isInApp()) {
+                window.location.href = 'bananascan://datadeletion?action=delete';
+                
+                setTimeout(function() {
+                    if (!isInApp()) {
+                        window.location.href = 'https://play.google.com/store/apps/details?id=com.bananascan.classifier';
+                    }
+                }, 5000);
+            } else {
+                window.location.href = 'bananascan://datadeletion?action=delete';
+            }
         }
 
         if (isInApp()) {
@@ -230,7 +236,7 @@
             document.querySelector('.app-links').style.display = 'block';
         }
 
-        if (window.location.protocol === 'https:') {
+        if (window.location.protocol === 'https:' && !isInApp() && !window.location.search.includes('web=true')) {
             openApp();
         }
     </script>
